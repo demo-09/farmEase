@@ -1,0 +1,51 @@
+<nav
+  class="navbar navbar-expand-lg fixed-top glass-navbar  "
+  [class.scrolled]="scrolled"
+>
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <span class="logo">🌾 farmEase</span>
+    </a>
+
+    <!-- Toggle -->
+    <button
+      class="navbar-toggler shadow-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#glassNavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="glassNavbar">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/crops">Crops</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/machinery">Machinery</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/policies">Policies</a>
+        </li>
+
+        <li class="nav-item ms-lg-3">
+          <button class="btn glass-btn px-4 rounded-pill">
+            Login
+          </button>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

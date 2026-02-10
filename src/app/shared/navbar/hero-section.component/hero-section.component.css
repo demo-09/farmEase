@@ -1,0 +1,18 @@
+  .hero-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #e8f5e9 100%);
+  }
+  .btn-hover-grow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-hover-grow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(40, 167, 69, 0.2);
+  }
+  .hero-img-float {
+    animation: floating 3s ease-in-out infinite;
+  }
+  @keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+  }

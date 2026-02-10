@@ -1,0 +1,93 @@
+/* ===== Glass Navbar ===== */
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 18px 0;
+  transition: all 0.4s ease;
+  animation: slideDown 0.8s ease forwards;
+}
+
+/* Scroll Effect */
+.glass-navbar.scrolled {
+  padding: 10px 0;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Slide Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo */
+.logo {
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover .logo {
+  transform: scale(1.05);
+}
+
+/* Nav Links */
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  color: #1f2937 !important;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+/* Underline Animation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #198754;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 70%;
+}
+
+/* Glass Button */
+.glass-btn {
+  background: rgba(25, 135, 84, 0.15);
+  color: #198754;
+  border: 1px solid rgba(25, 135, 84, 0.4);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+  background: #198754;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Mobile Fix */
+@media (max-width: 991px) {
+  .glass-navbar {
+    backdrop-filter: blur(16px);
+  }
+
+  .nav-link {
+    margin: 10px 0;
+  }
+}
