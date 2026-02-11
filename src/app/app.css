@@ -1,0 +1,79 @@
+:host {
+  --brand-green: #2e7d32;
+  --brand-yellow: #fbc02d;
+  --bg-light: #f9fdf9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: var(--bg-light);
+  font-family: 'Raleway', sans-serif;
+  overflow: hidden;
+}
+
+/* --- BRAND WRAPPER --- */
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: translateX(80px);
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- LOGO --- */
+.logo-svg {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.g-path {
+  fill: none;
+  stroke: var(--brand-green);
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: draw 1.5s ease forwards;
+}
+
+  .g-path.inner {
+    stroke: var(--brand-yellow);
+  }
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --- TEXT REVEAL --- */
+.text-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.typing-text {
+  font-weight: 700;
+  font-size: 3.2rem;
+  color: var(--brand-green);
+  white-space: nowrap;
+  margin: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.yellow-text {
+  color: var(--brand-yellow);
+}
+
+/* --- ACTIVE STATE --- */
+.is-active .brand-wrapper {
+  transform: translateX(0);
+}
+
+.is-active .typing-text {
+  clip-path: inset(0 0% 0 0);
+}

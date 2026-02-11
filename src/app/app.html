@@ -1,15 +1,27 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- Intro Bootloader -->
+<div *ngIf="showIntro" id="stage" class="bootloader">
+  <div class="brand-wrapper" id="main-wrapper">
+    <svg class="logo-svg" viewBox="0 0 140 140">
+      <g transform="rotate(-45 60 60)">
+        <path class="g-path" d="M 96 24 H 24 V 96 H 96 V 60 H 60" />
+        <path class="g-path inner"
+              transform="rotate(180 60 60) translate(-18, -16)"
+              d="M 96 24 H 24 V 96 H 96 V 60 H 60" />
+      </g>
+    </svg>
 
+    <div class="text-container">
+      <h1 class="typing-text">
+        Farm<span class="yellow-text">Ease</span>
+      </h1>
+    </div>
+  </div>
+</div>
 
-  <app-hero-section></app-hero-section>
+<!-- Main Page Content -->
+<div *ngIf="!showIntro">
   <app-nav></app-nav>
+  <app-hero-section></app-hero-section>
   <router-outlet></router-outlet>
-   <app-footer></app-footer>
-  
+  <app-footer></app-footer>
+</div>
