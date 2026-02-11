@@ -1,6 +1,5 @@
-<!-- Bootloader -->
 <div *ngIf="showIntro" id="stage" class="bootloader">
-  <div class="brand-wrapper" id="main-wrapper">
+  <div #mainWrapper class="brand-wrapper" id="main-wrapper">
     <svg class="logo-svg" viewBox="0 0 140 140">
       <g transform="rotate(-45 60 60)">
         <path class="g-path" d="M 96 24 H 24 V 96 H 96 V 60 H 60" />
@@ -18,8 +17,9 @@
   </div>
 </div>
 
-<!-- Main Content -->
-<div *ngIf="!showIntro">
+
+<div *ngIf="!showIntro" class="main-content">
+
   <app-nav></app-nav>
   <app-hero-section></app-hero-section>
   <router-outlet></router-outlet>

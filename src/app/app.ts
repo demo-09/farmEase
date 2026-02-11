@@ -1,42 +1,68 @@
-import { Component, AfterViewInit, NgZone, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import {
+  Component,
+  AfterViewInit,
+  NgZone,
+  Inject,
+  PLATFORM_ID,
+  ViewChild,
+  ElementRef,
+  ChangeDetectorRef
+} from '@angular/core';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+
+// Adjust these paths to your project
 import { NavComponent } from './shared/navbar/nav.component/nav.component';
 import { HeroSectionComponent } from './shared/navbar/hero-section.component/hero-section.component';
-import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './shared/footer/footer.component/footer.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeroSectionComponent, NavComponent, FooterComponent, CommonModule],
+  imports: [CommonModule, RouterOutlet, NavComponent, HeroSectionComponent, FooterComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class App implements AfterViewInit {
-
+  // Ensure this is always true on refresh
   showIntro = true;
 
-  constructor(private ngZone: NgZone, @Inject(PLATFORM_ID) private platformId: Object) {}
+  @ViewChild('mainWrapper') mainWrapper!: ElementRef;
+
+  constructor(
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
   ngAfterViewInit(): void {
-    // Only run in browser
+    // 1. Only run in the browser
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // Wait for DOM to be ready
-    setTimeout(() => {
-      const wrapper: any = document.getElementById('main-wrapper');
-      if (!wrapper) return; // extra safety
+    // 2. Wrap in NgZone to ensure Angular tracks the changes
+    this.ngZone.runOutsideAngular(() => {
+      // requestAnimationFrame is better for refreshes than setTimeout
+      requestAnimationFrame(() => {
 
-      // trigger animation
-      wrapper.parentElement?.classList.add('is-active');
+        // Give the browser a tiny moment to stabilize
+        setTimeout(() => {
+          const stage = document.getElementById('stage');
 
-      // hide intro after animation duration
-      setTimeout(() => {
-        this.ngZone.run(() => {
-          this.showIntro = false;
-        });
-      }, 1600); // match your animation
-    }, 0); // 0ms ensures code runs after browser DOM is ready
+          if (stage) {
+            // Start the animation
+            stage.classList.add('is-active');
+
+            // 3. After animation finishes, swap to main content
+            setTimeout(() => {
+              this.ngZone.run(() => {
+                this.showIntro = false;
+                // Force UI Update
+                this.cdr.detectChanges();
+              });
+            }, 1800); // Buffer for your 1.5s animation
+          }
+        }, 50);
+      });
+    });
   }
 }
