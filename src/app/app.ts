@@ -1,36 +1,42 @@
-import { Component,AfterViewInit,NgZone  } from '@angular/core';
-import {NavComponent} from './shared/navbar/nav.component/nav.component'
-import {HeroSectionComponent}from './shared/navbar/hero-section.component/hero-section.component'
+import { Component, AfterViewInit, NgZone, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { NavComponent } from './shared/navbar/nav.component/nav.component';
+import { HeroSectionComponent } from './shared/navbar/hero-section.component/hero-section.component';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './shared/footer/footer.component/footer.component';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeroSectionComponent , NavComponent , FooterComponent ,CommonModule],
+  standalone: true,
+  imports: [RouterOutlet, HeroSectionComponent, NavComponent, FooterComponent, CommonModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
-export class App  implements AfterViewInit {
+export class App implements AfterViewInit {
 
+  showIntro = true;
 
-  showIntro = true; // always show on page load
-
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngAfterViewInit(): void {
-    const wrapper:any = document.getElementById('main-wrapper');
+    // Only run in browser
+    if (!isPlatformBrowser(this.platformId)) return;
 
-    // trigger reveal animation
+    // Wait for DOM to be ready
     setTimeout(() => {
-      wrapper?.parentElement?.classList.add('is-active');
+      const wrapper: any = document.getElementById('main-wrapper');
+      if (!wrapper) return; // extra safety
 
-      // hide bootloader after animation finishes
+      // trigger animation
+      wrapper.parentElement?.classList.add('is-active');
+
+      // hide intro after animation duration
       setTimeout(() => {
-        // run inside Angular zone to trigger change detection
         this.ngZone.run(() => {
           this.showIntro = false;
         });
-      }, 1600); // match your animation duration
-    }, 100); // slight delay to ensure DOM is ready
+      }, 1600); // match your animation
+    }, 0); // 0ms ensures code runs after browser DOM is ready
   }
 }
