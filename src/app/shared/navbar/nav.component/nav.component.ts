@@ -1,15 +1,17 @@
 import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {RouterLink} from '@angular/router';
+
 
 @Component({
   selector: 'app-nav',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  scrolled = false;
 
-  @HostListener('window:scroll')
-  onScroll() {
-    this.scrolled = window.scrollY > 40;
-  }
+ 
+
 }

@@ -6,6 +6,7 @@
     "analytics": "b2a4ac62-b6cd-4bc7-85b6-ebd2f2bd28b6"
   },
   "newProjectRoot": "projects",
+ 
   "projects": {
     "farmEase": {
       "projectType": "application",
@@ -25,6 +26,7 @@
                 "input": "public"
               }
             ],
+            
             "styles": [
               "src/styles.css"
             ],

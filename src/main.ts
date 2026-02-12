@@ -1,11 +1,27 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { Routes, provideRouter, withHashLocation } from '@angular/router';
 import { App } from './app/app';
-import { Routes } from '@angular/router';
+import { Signup } from './app/pages/signup/signup';
+import { Login } from './app/pages/login/login';
+import { HomePage } from './app/pages/Home/home-page/home-page';
+import { About } from './app/pages/about/about';
 
-export const routes: Routes = [
-  { path: '', loadComponent: () => import('./app/app').then(m => m.App) },
+
+/* Define routes */
+const routes: Routes = [
+  { path: '', component : HomePage },
+  { path: 'Signup', component: Signup },
+  { path: 'Login', component: Login },
+  { path: 'About', component: About },
 ];
 
+/* App configuration */
+const appConfig = {
+  providers: [
+    provideRouter(routes, withHashLocation())
+  ]
+};
+
+/* Bootstrap the Angular application */
 bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+  .catch(err => console.error('Bootstrap error:', err));
