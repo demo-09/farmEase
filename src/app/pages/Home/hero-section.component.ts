@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-hero-section',
+  imports: [RouterLink],
   standalone: true,
   template: `
 <section class="hero position-relative d-flex align-items-center">
@@ -25,7 +27,7 @@ import { Component } from '@angular/core';
       <button class="btn btn-success btn-lg rounded-4 cta-button" (click)="scrollTo()">
         Get Started
       </button>
-      <button class="btn btn-outline-light btn-lg rounded-4 about-button">
+      <button class="btn btn-outline-light btn-lg rounded-4 about-button" routerLink="/About">
         About Us
       </button>
     </div>
@@ -143,7 +145,7 @@ import { Component } from '@angular/core';
 export class HeroSectionComponent {
 
   scrollTo() {
-    document.getElementById('navbar')?.scrollIntoView({
+    document.getElementById('home')?.scrollIntoView({
       behavior: 'smooth'
     });
   }

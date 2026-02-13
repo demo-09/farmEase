@@ -45,6 +45,6 @@ export class Signup {
     alert('Signup successful! Please login.');
 
     // Navigate to login page
-    this.router.navigate(['/login']);
+    this.router.navigate(['/Login']);
   }
 }

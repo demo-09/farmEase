@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-about-us',
   standalone: true,
   template: `
-<section class="about-section position-relative py-5">
+<section class="about-section position-relative py-5" id='home'>
 
   <h1 class="bg-text">AGRO</h1>
 

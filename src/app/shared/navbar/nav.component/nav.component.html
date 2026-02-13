@@ -23,6 +23,9 @@
         <li class="nav-item">
           <a class="nav-link fw-semibold nav-hover-effect" routerLink="/About" routerLinkActive="active-link">About</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold nav-hover-effect" *ngIf="auth.isLoggedIn()" routerLink="/News" routerLinkActive="active-link">News</a>
+        </li>
       </ul>
 
       <div class="d-flex align-items-center gap-2 ms-lg-3 auth-buttons">
