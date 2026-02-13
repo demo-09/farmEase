@@ -7,9 +7,11 @@ import { HomePage } from './app/pages/Home/home-page/home-page';
 import { About } from './app/pages/about/about';
 
 
+
 /* Define routes */
 const routes: Routes = [
-  { path: '', component : HomePage },
+  { path: '', redirectTo: 'HomePage', pathMatch: 'full' },
+  { path: '', component: HomePage },
   { path: 'Signup', component: Signup },
   { path: 'Login', component: Login },
   { path: 'About', component: About },

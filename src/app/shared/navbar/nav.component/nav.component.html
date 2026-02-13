@@ -1,48 +1,41 @@
+<nav class="container-fluid navbar navbar-expand-lg sticky-top transition-nav" id="navbar">
+  <div class="container rounded-pill shadow navbar-dark bg-dark py-2 px-4 mt-3 nav-glass">
 
-<nav class=" container-fluid navbar navbar-expand-lg transition-nav sticky-top "id="navbar">
-
-  <div class="container rounded-4 shadow-lg navbar-dark bg-dark">
-
-    <a class="navbar-brand d-flex align-items-center gap-2 fw-semibold px-2" routerLink="/">
-
+    <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" routerLink="/">
       <img src="logo.png"
            alt="FarmEase Logo"
-           class="img-fluid rounded-circle shadow-sm px-2"
+           class="img-fluid rounded-circle logo-animate"
            style="height:45px;" />
-
-      <span class="fs-4">
-        <span class="text-success">farm</span>
-        <span class="text-warning">Ease</span>
+      <span class="fs-4 logo-text">
+        <span class="text-success">farm</span><span class="text-warning">Ease</span>
       </span>
-
     </a>
 
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-end px-2" id="navMenu">
-      <ul class="navbar-nav mb-2 mb-lg-0">
-
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav mb-2 mb-lg-0 gap-2">
         <li class="nav-item">
-          <a class="nav-link fw-semibold" routerLink="/">Home</a>
+          <a class="nav-link fw-semibold nav-hover-effect" routerLink="/" routerLinkActive="active-link">Home</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link fw-semibold"  routerLink="/About">About</a>
+          <a class="nav-link fw-semibold nav-hover-effect" routerLink="/About" routerLinkActive="active-link">About</a>
         </li>
-
       </ul>
 
-      <button class="btn btn-outline-warning rounded-4 px-3 ms-3" routerLink="/Signup">
-        Registation
-      </button>
-      <button class="btn btn-outline-success rounded-4 px-3 ms-3" routerLink="/Login">
-        Login
-      </button>
-
+      <div class="d-flex align-items-center gap-2 ms-lg-3 auth-buttons">
+        <button class="btn btn-outline-warning rounded-pill px-4" *ngIf="!auth.isLoggedIn()" routerLink="/Signup">
+          Registration
+        </button>
+        <button class="btn btn-success rounded-pill px-4 shadow-sm" *ngIf="!auth.isLoggedIn()" routerLink="/Login">
+          Login
+        </button>
+        <button class="btn btn-outline-danger rounded-pill px-4" *ngIf="auth.isLoggedIn()" (click)="auth.logout()">
+          LogOut
+        </button>
+      </div>
     </div>
-
   </div>
 </nav>
