@@ -11,9 +11,9 @@
       </span>
     </a>
 
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!--<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>-->
 
     <div class="collapse navbar-collapse justify-content-end" id="navMenu">
       <ul class="navbar-nav mb-2 mb-lg-0 gap-2">
@@ -23,22 +23,63 @@
         <li class="nav-item">
           <a class="nav-link fw-semibold nav-hover-effect" routerLink="/About" routerLinkActive="active-link">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold nav-hover-effect" *ngIf="auth.isLoggedIn()" routerLink="/News" routerLinkActive="active-link">News</a>
-        </li>
       </ul>
 
       <div class="d-flex align-items-center gap-2 ms-lg-3 auth-buttons">
-        <button class="btn btn-outline-warning rounded-pill px-4" *ngIf="!auth.isLoggedIn()" routerLink="/Signup">
+        <button class="btn btn-outline-warning rounded-pill px-4" *ngIf="!user" routerLink="/Signup">
           Registration
         </button>
-        <button class="btn btn-success rounded-pill px-4 shadow-sm" *ngIf="!auth.isLoggedIn()" routerLink="/Login">
+        <button class="btn btn-success rounded-pill px-4 shadow-sm" *ngIf="!user" routerLink="/Login">
           Login
         </button>
-        <button class="btn btn-outline-danger rounded-pill px-4" *ngIf="auth.isLoggedIn()" (click)="auth.logout()">
+        <button class="btn btn-outline-danger rounded-pill px-4" *ngIf="user" (click)="logout()">
           LogOut
         </button>
       </div>
     </div>
+
+    <!-- PROFILE BUTTON -->
+    <button class="btn btn-outline-light rounded-circle ms-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasProfile"
+            aria-controls="offcanvasProfile"
+            *ngIf="user">
+      ☰
+    </button>
+
+
+
+
+
   </div>
 </nav>
+
+<!-- PROFILE SIDE PANEL -->
+<div class="offcanvas offcanvas-end farm-profile-panel" tabindex="-1" id="offcanvasProfile" aria-labelledby="offcanvasProfileLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasProfileLabel">Your Profile</h5>
+    <button type="button" class="btn-close close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <div class="profile-img-wrapper">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+           class="profile-img"
+           alt="User">
+    </div>
+
+    <h5 class="profile-name">Name: {{ user.name }}</h5>
+    <p class="profile-role">User ID: {{ user.id }}</p>
+
+    <hr class="profile-divider">
+
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Mobile:</strong> {{ user.phone }}</p>
+    <p><strong>Address:</strong> {{ user.address }}</p>
+
+    <button class="btn btn-farmease w-100 mt-3" (click)="logout()">
+      Logout
+    </button>
+  </div>
+</div>

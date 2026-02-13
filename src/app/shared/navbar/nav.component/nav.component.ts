@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../Auth/auth.service';
-
-
 
 @Component({
   selector: 'app-nav',
@@ -12,6 +10,20 @@ import { AuthService } from '../../../Auth/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent {
-  constructor(public auth: AuthService) { }
+export class NavComponent implements OnInit {
+
+  user: any = null;
+  showProfilePanel = false;
+
+  constructor(private auth: AuthService) { }
+
+  ngOnInit() {
+    this.auth.user$.subscribe(user => {
+      this.user = user; // 🔥 auto updates navbar
+    });
+  }
+
+  logout() {
+    this.auth.logout();
+  }
 }
