@@ -1,6 +1,6 @@
 <div class="split-screen">
 
-  <!-- LEFT VISUAL SECTION -->
+  <!-- RIGHT VISUAL SECTION -->
   <div class="visual-section">
     <div class="overlay"></div>
 
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <!-- RIGHT AUTH SECTION -->
+  <!-- LEFT AUTH SECTION -->
   <div class="auth-section">
     <div class="auth-card">
       <div class="brand-badge">Secure Registration</div>
@@ -40,13 +40,45 @@
         </div>
 
         <div class="input-group">
+          <input type="tel"
+                 #phone
+                 required
+                 pattern="[0-9]{10}"
+                 maxlength="10"
+                 (keypress)="allowOnlyNumbers($event)">
+          <label>Phone Number</label>
+
+          <small *ngIf="phone.value.length > 0 && phone.value.length !== 10"
+                 class="error">
+            Phone number must be 10 digits
+          </small>
+        </div>
+
+
+        <div class="input-group">
+          <input type="text" #address required>
+          <label>Address</label>
+        </div>
+
+        <div class="input-group">
           <input type="password" #password required>
           <label>Password</label>
         </div>
 
-        <button type="button" class="btn-signup" (click)="signup(name.value, email.value, password.value)">
+        <button type="button"
+                class="btn-signup"
+                [disabled]="phone.value.length !== 10"
+                (click)="signup(
+                                name.value,
+                                email.value,
+                                password.value,
+                                phone.value,
+                                address.value
+                              )"
+                              >
           Create My Account
         </button>
+
 
         <div class="auth-footer">
           Already have an account?

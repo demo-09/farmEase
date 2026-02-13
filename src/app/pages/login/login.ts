@@ -23,7 +23,7 @@ export class Login  {
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem('User') || '[]');
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
 
     const foundUser = users.find(
       (u: any) => u.email === email && u.password === password
@@ -34,13 +34,11 @@ export class Login  {
       return;
     }
 
-  
-    localStorage.setItem('CurrentUser', JSON.stringify(foundUser));
-
-
-    this.auth.login();
-
+    this.auth.login(foundUser);
     this.router.navigate(['/']);
+
   }
+
+
 
 }
