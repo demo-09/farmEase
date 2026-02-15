@@ -1,0 +1,79 @@
+
+/* HERO */
+.hero-section {
+  height: 75vh;
+  background: linear-gradient(135deg, #198754, #14532d);
+}
+
+/* CTA */
+.cta-section {
+  background: linear-gradient(135deg, #14532d, #198754);
+}
+
+/* SERVICE CARD */
+.service-card {
+  border-radius: 20px;
+  transition: 0.4s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.service-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  background: linear-gradient(135deg, #198754, #14532d);
+  color: white;
+}
+
+.service-card:hover p,
+.service-card:hover li {
+  color: #f8f9fa;
+}
+
+/* ICON */
+.icon-box {
+  font-size: 45px;
+  color: #198754;
+}
+
+/* PROCESS SECTION */
+.process-box {
+  padding: 30px;
+  border-radius: 15px;
+  background: #f8f9fa;
+  transition: 0.3s;
+}
+
+.process-box:hover {
+  background: #198754;
+  color: white;
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  background: #198754;
+  color: white;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* SIMPLE FADE ANIMATION */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
